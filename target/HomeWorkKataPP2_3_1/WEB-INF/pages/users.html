@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+    <style>
+        body {
+            font-size: 20px;
+        }
+
+        table {
+            font-size: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Пользователи</h1>
+<table border="2">
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Эл.почта</th>
+        <th>Настройка</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+
+        <td th:text="${user.name}">Имя</td>
+        <td th:text="${user.lastName}">Фамилия</td>
+        <td th:text="${user.age}">Возраст</td>
+        <td th:text="${user.email}">Эл.почта</td>
+        <td>
+            <a th:href="@{/updateInfo(userId=${user.id})}">
+                <button type="updateButton" th:text="Изменить"></button>
+            </a>
+            <a th:href="@{/deleteUser(userId=${user.id})}">
+                <button type="deleteButton" th:text="Удалить"></button>
+            </a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<label>
+    <input th:type="button" th:value="Добавить"
+           onclick="window.location.href = 'addNewUser'"/>
+</label>
+</body>
+</html>
