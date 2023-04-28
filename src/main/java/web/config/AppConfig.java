@@ -19,11 +19,11 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
-public class JavaConfig {
+public class AppConfig {
 
     private final Environment env;
 
-    public JavaConfig(Environment env) {
+    public AppConfig(Environment env) {
         this.env = env;
     }
 
