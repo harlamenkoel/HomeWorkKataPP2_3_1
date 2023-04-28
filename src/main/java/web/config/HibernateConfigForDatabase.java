@@ -19,11 +19,11 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
-public class AppConfig {
+public class HibernateConfigForDatabase {
 
     private final Environment env;
 
-    public AppConfig(Environment env) {
+    public HibernateConfigForDatabase(Environment env) {
         this.env = env;
     }
 
