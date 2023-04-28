@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление пользователя</title>
+</head>
+
 <body>
 <h2>Добавление пользователя</h2>
 
-<form action="saveUser" method="POST" th:object="${user}">
-
+<form action="#" th:action="@{/user/save}" method="POST" th:object="${user}">
     <input type="hidden" th:field="*{id}"/>
 
     Имя<input type="text" th:field="*{name}"/>

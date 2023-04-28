@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+
 @Repository
 public class UserDaoImp implements UserDao {
     @PersistenceContext
@@ -16,23 +17,35 @@ public class UserDaoImp implements UserDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<User> getListUsers() {
+    public List<User> getAllUsers() {
         TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         return query.getResultList();
     }
 
     @Override
-    public void saveUser(User user) {
-        entityManager.merge(user);
-    }
-
-    @Override
-    public User getUser(Long id) {
+    public User getUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
+    public void saveUser(User user) {
+        entityManager.persist(user);
+    }
+
+    @Override
+    public void updateUser(Long id, User user) {
+        User userUpdate = getUserById(id);
+        userUpdate.setName(user.getName());
+        userUpdate.setLastName(user.getLastName());
+        userUpdate.setAge(user.getAge());
+        userUpdate.setEmail(user.getEmail());
+        entityManager.merge(userUpdate);
+    }
+
+
+    @Override
     public void deleteUser(Long id) {
-        entityManager.remove(entityManager.find(User.class, id));
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 }
